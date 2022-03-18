@@ -9,6 +9,7 @@ public class UserService : IUserService
     private IMongoClient _mongoClient;
     private IMongoDatabase _mongoDatabase;
     private IMongoCollection<UserModel> _mongoCollection;
+
     public UserService()
     {
         _mongoClient = new MongoClient(Configuration.ConnectionStringMongodb);

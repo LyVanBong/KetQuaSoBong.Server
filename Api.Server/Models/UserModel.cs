@@ -6,6 +6,7 @@ namespace Models
     {
         [BsonId]
         public string UserName { get; set; }
+
         public string Password { get; set; }
         public string NumberPhone { get; set; }
         public string BirthDay { get; set; }
