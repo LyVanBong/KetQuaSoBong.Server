@@ -50,7 +50,7 @@ do
                 XoSoMienBac.GetData(),
                 XoSoMienNam.GetData("https://xoso.me/xsmn-{0}-ket-qua-xo-so-mien-nam-ngay-{0}.html", "KqxsMn"),
                 XoSoMienNam.GetData("https://xoso.me/xsmt-{0}-ket-qua-xo-so-mien-trung-ngay-{0}.html", "KqxsMt"),
-                LichBongDa.GetData()
+                //LichBongDa.GetData()
     });
             Console.WriteLine("Enter .... !");
             break;
