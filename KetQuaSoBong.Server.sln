@@ -3,15 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{291DBE4F-DF98-44E8-BD6C-96843E094741}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrucTiepKetQua.net.Server", "TrucTiepKetQua.net\Server\TrucTiepKetQua.net.Server.csproj", "{46395B10-08ED-464F-BCC1-A28FA4C3E026}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrawDataXoSo", "CrawDataXoSo\CrawDataXoSo.csproj", "{B940E08B-DF48-403F-8767-55128CEF851F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrucTiepKetQua.net.Client", "TrucTiepKetQua.net\Client\TrucTiepKetQua.net.Client.csproj", "{52E6888C-1325-4DBC-8C93-EDCD459862D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrucTiepKetQua.net.Server", "TrucTiepKetQua.net\Server\TrucTiepKetQua.net.Server.csproj", "{46395B10-08ED-464F-BCC1-A28FA4C3E026}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrucTiepKetQua.net.Shared", "TrucTiepKetQua.net\Shared\TrucTiepKetQua.net.Shared.csproj", "{9FCB1A17-6A01-4568-8EDC-C03D3B5FAAC6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrucTiepKetQua.net.Client", "TrucTiepKetQua.net\Client\TrucTiepKetQua.net.Client.csproj", "{52E6888C-1325-4DBC-8C93-EDCD459862D6}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrucTiepKetQua.net.Shared", "TrucTiepKetQua.net\Shared\TrucTiepKetQua.net.Shared.csproj", "{9FCB1A17-6A01-4568-8EDC-C03D3B5FAAC6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrucTiepKetQua.net.Console", "TrucTiepKetQua.net.Console\TrucTiepKetQua.net.Console.csproj", "{F68FE00C-E173-44BF-81F5-14A34C81A8C7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B940E08B-DF48-403F-8767-55128CEF851F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B940E08B-DF48-403F-8767-55128CEF851F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B940E08B-DF48-403F-8767-55128CEF851F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B940E08B-DF48-403F-8767-55128CEF851F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{46395B10-08ED-464F-BCC1-A28FA4C3E026}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{46395B10-08ED-464F-BCC1-A28FA4C3E026}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46395B10-08ED-464F-BCC1-A28FA4C3E026}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -35,12 +29,13 @@ Global
 		{9FCB1A17-6A01-4568-8EDC-C03D3B5FAAC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9FCB1A17-6A01-4568-8EDC-C03D3B5FAAC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9FCB1A17-6A01-4568-8EDC-C03D3B5FAAC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F68FE00C-E173-44BF-81F5-14A34C81A8C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F68FE00C-E173-44BF-81F5-14A34C81A8C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F68FE00C-E173-44BF-81F5-14A34C81A8C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F68FE00C-E173-44BF-81F5-14A34C81A8C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{B940E08B-DF48-403F-8767-55128CEF851F} = {291DBE4F-DF98-44E8-BD6C-96843E094741}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8373BB77-8930-4BA4-9CC7-DA0CD47B6F7D}

@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.ResponseCompression;
+using TrucTiepKetQua.net.Server.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +6,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+
+builder.Services.AddHostedService<KetQuaXoSoMienBacService>();
+builder.Services.AddHostedService<KetQuaXoSoMienNamService>();
+builder.Services.AddHostedService<KetQuaXoSoMienTrungService>();
 
 var app = builder.Build();
 
