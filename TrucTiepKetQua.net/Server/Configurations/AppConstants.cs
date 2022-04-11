@@ -5,7 +5,7 @@ public static class AppConstants
     /// <summary>
     /// Thời gian request lấy dữ liệu
     /// </summary>
-    public const int TimeRequestService = 2;
+    public const int TimeRequestService = 1;
     /// <summary>
     /// Chuối kết nỗi với mongodb
     /// </summary>

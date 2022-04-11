@@ -62,8 +62,8 @@ public class KetQuaXoSoMienTrungService : IHostedService, IDisposable
             if (kq != null)
             {
                 await _mongoCollection.InsertOneAsync(kq);
-                _date = _date.AddDays(1);
             }
+            _date = _date.AddDays(1);
         }
         else if (_date.Date == now.Date)
         {
@@ -86,7 +86,20 @@ public class KetQuaXoSoMienTrungService : IHostedService, IDisposable
             }
             else if (now.TimeOfDay > _timeStop.TimeOfDay)
             {
-                _date = now.AddDays(1);
+                var kq = await XoSoMienNam.GetData(_url, _date, _logger);
+                if (kq != null)
+                {
+                    if (kq.NgayQuay == _timeCheck)
+                    {
+                        await _mongoCollection.ReplaceOneAsync(x => x.NgayQuay == kq.NgayQuay, kq);
+                    }
+                    else
+                    {
+                        _timeCheck = kq.NgayQuay;
+                        await _mongoCollection.InsertOneAsync(kq);
+                    }
+                    _date = now.AddDays(1);
+                }
             }
         }
     }
