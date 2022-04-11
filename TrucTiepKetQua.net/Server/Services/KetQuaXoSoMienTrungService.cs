@@ -1,5 +1,6 @@
 ﻿using MongoDB.Driver;
 using System.Globalization;
+using MongoDB.Bson;
 using TrucTiepKetQua.net.Server.Configurations;
 using TrucTiepKetQua.net.Server.Helpers;
 using TrucTiepKetQua.net.Shared.Models;
@@ -23,14 +24,13 @@ public class KetQuaXoSoMienTrungService : IHostedService, IDisposable
         MongoClient mongo = new MongoClient(AppConstants.ConnectionStringMongoDb);
         IMongoDatabase database = mongo.GetDatabase("Kqxs");
         _mongoCollection = database.GetCollection<KqxsMnModel>("KqxsMt");
-        var sort = Builders<KqxsMbModel>.Sort.Ascending(nameof(KqxsMnModel.Id));
-        var item = _mongoCollection.Find(x => x.Id != null).ToList().LastOrDefault();
+        var item = _mongoCollection.Find(x => x.NgayQuay != null).ToList().LastOrDefault();
         if (item != null)
         {
             var ngay = item.NgayQuay;
             if (string.IsNullOrEmpty(ngay))
             {
-                _date = DateTime.Now;
+                _date = new DateTime(2009, 1, 1);
             }
             else
             {
@@ -39,7 +39,7 @@ public class KetQuaXoSoMienTrungService : IHostedService, IDisposable
         }
         else
         {
-            _date = DateTime.Now;
+            _date = _date = new DateTime(2009, 1, 1);
         }
     }
 

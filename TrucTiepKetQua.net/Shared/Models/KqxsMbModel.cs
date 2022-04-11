@@ -5,9 +5,6 @@ namespace TrucTiepKetQua.net.Shared.Models;
 
 public class KqxsMbModel : KqxsModel
 {
-    [BsonId]
-    [BsonRepresentation(BsonType.ObjectId)]
-    public string? Id { get; set; }
-
+    [BsonElement("_id")]
     public string NgayQuay { get; set; }
 }
