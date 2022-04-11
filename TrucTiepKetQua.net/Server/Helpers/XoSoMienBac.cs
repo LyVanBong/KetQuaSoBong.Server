@@ -91,7 +91,7 @@ public static class XoSoMienBac
 
                 #endregion loc du lieu
 
-                if (!string.IsNullOrEmpty(kq.G7_4) && !string.IsNullOrEmpty(kq.G7_3))
+                if (!string.IsNullOrEmpty(kq.DacBiet))
                 {
                     return kq;
                 }
