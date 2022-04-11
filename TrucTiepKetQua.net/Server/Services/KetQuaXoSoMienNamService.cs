@@ -75,7 +75,7 @@ public class KetQuaXoSoMienNamService : IHostedService, IDisposable
                 {
                     if (kq.NgayQuay == _timeCheck)
                     {
-                        await _mongoCollection.ReplaceOneAsync(x => x.NgayQuay == kq.NgayQuay, kq);
+                        await _mongoCollection.ReplaceOneAsync(Builders<KqxsMnModel>.Filter.Eq("NgayQuay", kq.NgayQuay), kq);
                     }
                     else
                     {
@@ -91,7 +91,7 @@ public class KetQuaXoSoMienNamService : IHostedService, IDisposable
                 {
                     if (kq.NgayQuay == _timeCheck)
                     {
-                        await _mongoCollection.ReplaceOneAsync(x => x.NgayQuay == kq.NgayQuay, kq);
+                        await _mongoCollection.ReplaceOneAsync(Builders<KqxsMnModel>.Filter.Eq("NgayQuay", kq.NgayQuay), kq);
                     }
                     else
                     {

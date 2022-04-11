@@ -20,7 +20,7 @@ public static class XoSoMienNam
             var request = new RestRequest();
             request.Method = Method.Get;
             var response = await client.GetAsync(request);
-            var content = response.Content;
+            var content = response?.Content;
 
             // lấy tên tính thành
             var regexTinhThanh = Regex.Matches(content, @"class=""underline bold"">(.*?)</a>");
