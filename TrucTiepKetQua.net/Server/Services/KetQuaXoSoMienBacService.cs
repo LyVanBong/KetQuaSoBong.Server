@@ -1,8 +1,8 @@
-﻿using System.Globalization;
-using MongoDB.Driver;
+﻿using MongoDB.Driver;
+using System.Globalization;
 using TrucTiepKetQua.net.Server.Configurations;
 using TrucTiepKetQua.net.Server.Helpers;
-using TrucTiepKetQua.net.Server.Models;
+using TrucTiepKetQua.net.Shared.Models;
 
 namespace TrucTiepKetQua.net.Server.Services;
 
@@ -16,6 +16,7 @@ public class KetQuaXoSoMienBacService : IHostedService, IDisposable
     private DateTime _timeStart = new DateTime(2022, 01, 01, 17, 55, 0);
     private DateTime _timeStop = new DateTime(2022, 01, 01, 18, 35, 0);
     private string _timeCheck = "nan";
+
     public KetQuaXoSoMienBacService(ILogger<KetQuaXoSoMienBacService> logger)
     {
         _logger = logger;
@@ -41,12 +42,13 @@ public class KetQuaXoSoMienBacService : IHostedService, IDisposable
             _date = DateTime.Now;
         }
     }
+
     public Task StartAsync(CancellationToken stoppingToken)
     {
         _logger.LogInformation("Hosted Service running.");
 
         _timer = new Timer(DoWork, null, TimeSpan.Zero,
-            TimeSpan.FromMinutes(1));
+            TimeSpan.FromMinutes(AppConstants.TimeRequestService));
 
         return Task.CompletedTask;
     }

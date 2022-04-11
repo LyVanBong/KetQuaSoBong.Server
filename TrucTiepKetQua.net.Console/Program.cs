@@ -5,7 +5,6 @@ using TrucTiepKetQua.net.Console;
 
 Console.WriteLine("Hello, World!");
 
-
 var mongo = new MongoClient(AppConstants.ConnectionStringMongoDb);
 var database = mongo.GetDatabase("Kqxs");
 var collection = database.GetCollection<KqxsMnModel>("KqxsMn");

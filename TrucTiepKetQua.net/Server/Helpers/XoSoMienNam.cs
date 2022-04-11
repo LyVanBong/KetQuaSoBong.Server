@@ -1,9 +1,8 @@
 ﻿using MongoDB.Driver;
 using RestSharp;
-using System.Diagnostics;
 using System.Text.RegularExpressions;
-using TrucTiepKetQua.net.Server.Models;
 using TrucTiepKetQua.net.Server.Services;
+using TrucTiepKetQua.net.Shared.Models;
 
 namespace TrucTiepKetQua.net.Server.Helpers;
 
@@ -13,7 +12,6 @@ public static class XoSoMienNam
     {
         try
         {
-
             #region loc du lieu
 
             var kq = new KqxsMnModel();
@@ -245,6 +243,7 @@ public static class XoSoMienNam
                     }
                 }
             }
+
             #endregion loc du lieu
 
             if (kq.Datas.Any())

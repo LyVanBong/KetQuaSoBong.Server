@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace TrucTiepKetQua.net.Server.Models;
+namespace TrucTiepKetQua.net.Shared.Models;
 
 public class UserModel
 {

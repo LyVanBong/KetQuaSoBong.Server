@@ -1,7 +1,7 @@
 ﻿using RestSharp;
 using System.Text.RegularExpressions;
-using TrucTiepKetQua.net.Server.Models;
 using TrucTiepKetQua.net.Server.Services;
+using TrucTiepKetQua.net.Shared.Models;
 
 namespace TrucTiepKetQua.net.Server.Helpers;
 

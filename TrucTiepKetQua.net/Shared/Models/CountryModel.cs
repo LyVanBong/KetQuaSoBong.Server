@@ -1,4 +1,4 @@
-﻿namespace TrucTiepKetQua.net.Server.Models;
+﻿namespace TrucTiepKetQua.net.Shared.Models;
 
 public class CountryModel
 {

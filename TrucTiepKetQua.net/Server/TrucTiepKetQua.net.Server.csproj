@@ -18,5 +18,9 @@
     <ProjectReference Include="..\Shared\TrucTiepKetQua.net.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
 
 </Project>
