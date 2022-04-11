@@ -7,14 +7,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
-#if DEBUG
-Console.WriteLine("DEBUG");
-#else
 builder.Services.AddHostedService<KetQuaXoSoMienBacService>();
 builder.Services.AddHostedService<KetQuaXoSoMienNamService>();
 builder.Services.AddHostedService<KetQuaXoSoMienTrungService>();
-
-#endif
 
 var app = builder.Build();
 
