@@ -21,6 +21,15 @@ public class KetQuaXoSoMienTrungService : IHostedService, IDisposable
     public KetQuaXoSoMienTrungService(ILogger<KetQuaXoSoMienNamService> logger)
     {
         _logger = logger;
+    }
+
+    public Task StartAsync(CancellationToken stoppingToken)
+    {
+        _logger.LogInformation("Hosted Service running.");
+
+        _timer = new Timer(DoWork, null, TimeSpan.Zero,
+            TimeSpan.FromMinutes(AppConstants.TimeRequestService));
+
         MongoClient mongo = new MongoClient(AppConstants.ConnectionStringMongoDb);
         IMongoDatabase database = mongo.GetDatabase("Kqxs");
         _mongoCollection = database.GetCollection<KqxsMnModel>("KqxsMt");
@@ -41,14 +50,6 @@ public class KetQuaXoSoMienTrungService : IHostedService, IDisposable
         {
             _date = _date = new DateTime(2009, 1, 1);
         }
-    }
-
-    public Task StartAsync(CancellationToken stoppingToken)
-    {
-        _logger.LogInformation("Hosted Service running.");
-
-        _timer = new Timer(DoWork, null, TimeSpan.Zero,
-            TimeSpan.FromMinutes(AppConstants.TimeRequestService));
 
         return Task.CompletedTask;
     }
