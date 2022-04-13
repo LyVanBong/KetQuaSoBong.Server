@@ -1,6 +1,5 @@
 ﻿using MongoDB.Driver;
 using System.Globalization;
-using MongoDB.Bson;
 using TrucTiepKetQua.net.Server.Configurations;
 using TrucTiepKetQua.net.Server.Helpers;
 using TrucTiepKetQua.net.Shared.Models;
@@ -21,15 +20,6 @@ public class KetQuaXoSoMienNamService : IHostedService, IDisposable
     public KetQuaXoSoMienNamService(ILogger<KetQuaXoSoMienNamService> logger)
     {
         _logger = logger;
-    }
-
-    public Task StartAsync(CancellationToken stoppingToken)
-    {
-        _logger.LogInformation("Hosted Service running.");
-
-        _timer = new Timer(DoWork, null, TimeSpan.Zero,
-            TimeSpan.FromMinutes(AppConstants.TimeRequestService));
-
         MongoClient mongo = new MongoClient(AppConstants.ConnectionStringMongoDb);
         IMongoDatabase database = mongo.GetDatabase("Kqxs");
         _mongoCollection = database.GetCollection<KqxsMnModel>("KqxsMn");
@@ -50,59 +40,73 @@ public class KetQuaXoSoMienNamService : IHostedService, IDisposable
         {
             _date = new DateTime(2009, 1, 1);
         }
+    }
 
+    public Task StartAsync(CancellationToken stoppingToken)
+    {
+        _logger.LogInformation("Hosted Service running.");
+
+        _timer = new Timer(DoWork, null, TimeSpan.Zero,
+            TimeSpan.FromMinutes(AppConstants.TimeRequestService));
         return Task.CompletedTask;
     }
 
     private async void DoWork(object? state)
     {
-        DateTime now = DateTime.Now;
- _logger.LogInformation("Hosted Service running." +now.ToString("G"));
-        if (_date.Date < now.Date)
+        try
         {
-            var kq = await XoSoMienNam.GetData(_url, _date, _logger);
-            if (kq != null)
+            DateTime now = DateTime.Now;
+            _logger.LogInformation("Hosted Service DoWork: " + now.ToString("G"));
+            if (_date.Date < now.Date)
             {
-                await _mongoCollection.InsertOneAsync(kq);
+                var kq = await XoSoMienNam.GetData(_url, _date, _logger);
+                if (kq != null)
+                {
+                    await _mongoCollection.InsertOneAsync(kq);
+                }
+                _date = _date.AddDays(1);
             }
-            _date = _date.AddDays(1);
+            else if (_date.Date == now.Date)
+            {
+                if (now.TimeOfDay > _timeStart.TimeOfDay && now.TimeOfDay < _timeStop.TimeOfDay)
+                {
+                    _date = now;
+                    var kq = await XoSoMienNam.GetData(_url, _date, _logger);
+                    if (kq != null)
+                    {
+                        if (kq.NgayQuay == _timeCheck)
+                        {
+                            await _mongoCollection.ReplaceOneAsync(Builders<KqxsMnModel>.Filter.Eq("NgayQuay", kq.NgayQuay), kq);
+                        }
+                        else
+                        {
+                            _timeCheck = kq.NgayQuay;
+                            await _mongoCollection.InsertOneAsync(kq);
+                        }
+                    }
+                }
+                else if (now.TimeOfDay > _timeStop.TimeOfDay)
+                {
+                    var kq = await XoSoMienNam.GetData(_url, _date, _logger);
+                    if (kq != null)
+                    {
+                        if (kq.NgayQuay == _timeCheck)
+                        {
+                            await _mongoCollection.ReplaceOneAsync(Builders<KqxsMnModel>.Filter.Eq("NgayQuay", kq.NgayQuay), kq);
+                        }
+                        else
+                        {
+                            _timeCheck = kq.NgayQuay;
+                            await _mongoCollection.InsertOneAsync(kq);
+                        }
+                        _date = now.AddDays(1);
+                    }
+                }
+            }
         }
-        else if (_date.Date == now.Date)
+        catch (Exception e)
         {
-            if (now.TimeOfDay > _timeStart.TimeOfDay && now.TimeOfDay < _timeStop.TimeOfDay)
-            {
-                _date = now;
-                var kq = await XoSoMienNam.GetData(_url, _date, _logger);
-                if (kq != null)
-                {
-                    if (kq.NgayQuay == _timeCheck)
-                    {
-                        await _mongoCollection.ReplaceOneAsync(Builders<KqxsMnModel>.Filter.Eq("NgayQuay", kq.NgayQuay), kq);
-                    }
-                    else
-                    {
-                        _timeCheck = kq.NgayQuay;
-                        await _mongoCollection.InsertOneAsync(kq);
-                    }
-                }
-            }
-            else if (now.TimeOfDay > _timeStop.TimeOfDay)
-            {
-                var kq = await XoSoMienNam.GetData(_url, _date, _logger);
-                if (kq != null)
-                {
-                    if (kq.NgayQuay == _timeCheck)
-                    {
-                        await _mongoCollection.ReplaceOneAsync(Builders<KqxsMnModel>.Filter.Eq("NgayQuay", kq.NgayQuay), kq);
-                    }
-                    else
-                    {
-                        _timeCheck = kq.NgayQuay;
-                        await _mongoCollection.InsertOneAsync(kq);
-                    }
-                    _date = now.AddDays(1);
-                }
-            }
+            _logger.LogInformation("Hosted Service Exception: " + e.Message);
         }
     }
 
