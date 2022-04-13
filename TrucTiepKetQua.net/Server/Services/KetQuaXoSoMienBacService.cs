@@ -57,6 +57,7 @@ public class KetQuaXoSoMienBacService : IHostedService, IDisposable
     private async void DoWork(object? state)
     {
         DateTime now = DateTime.Now;
+ _logger.LogInformation("Hosted Service running." +now.ToString("G"));
         if (_date.Date < now.Date)
         {
             var kq = await XoSoMienBac.GetData(_url, _date, _logger);
