@@ -16,7 +16,7 @@ public static class CheckInHelper
         var rd = new Random();
         string str;
         var option = new ChromeOptions();
-        //option.AddArgument("--window-position=-32000,-32000");
+        option.AddArgument("--window-position=-32000,-32000");
         var driver = new ChromeDriver(option);
 
         driver.Navigate().GoToUrl("https://hub.tri-7.com/stream/");
