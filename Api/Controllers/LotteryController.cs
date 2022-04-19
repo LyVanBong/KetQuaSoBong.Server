@@ -1,6 +1,6 @@
-﻿using Api.Configurations;
-using Api.Helpers;
+﻿using Api.Helpers;
 using Api.Models;
+using Configurations;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 

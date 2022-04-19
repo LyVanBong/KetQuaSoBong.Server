@@ -1,6 +1,6 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 
-namespace Api.CheckIn;
+namespace CheckInService;
 
 public class CheckInModel
 {

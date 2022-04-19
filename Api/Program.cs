@@ -1,5 +1,3 @@
-using Api.CheckIn;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -9,7 +7,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddHostedService<CheckInService>();
+builder.Services.AddHostedService<CheckInService.CheckInService>();
 
 var app = builder.Build();
 

@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
-namespace Api.CheckIn;
+namespace CheckInService;
 
 public static class CheckInHelper
 {

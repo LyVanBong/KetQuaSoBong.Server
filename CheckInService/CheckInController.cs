@@ -1,8 +1,8 @@
-﻿using Api.Configurations;
+﻿using Configurations;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 
-namespace Api.CheckIn
+namespace CheckInService
 {
     [Route("api/[controller]")]
     [ApiController]

@@ -1,7 +1,8 @@
-﻿using Api.Configurations;
+﻿using Configurations;
+using Microsoft.Extensions.Hosting;
 using MongoDB.Driver;
 
-namespace Api.CheckIn;
+namespace CheckInService;
 
 public class CheckInService : IHostedService, IDisposable
 {
@@ -20,18 +21,19 @@ public class CheckInService : IHostedService, IDisposable
     }
     public async Task StartAsync(CancellationToken stoppingToken)
     {
-        await TelegramHelper.SendMessage($"[{DateTime.Now}] Check in bắt đầu được khởi động");
+        await TelegramHelper.SendMessage($"[{DateTime.Now}] Bắt đầu khởi động phầm mền check in out");
         var data = _collectionCheckIn.Find(Builders<CheckInModel>.Filter.Empty);
         if (data.Any())
         {
             _userCheckIns = data.ToList();
         }
         _timer = new Timer(DoWork, null, TimeSpan.Zero,
-            TimeSpan.FromMinutes(5));
+            TimeSpan.FromMinutes(2));
     }
 
     private async void DoWork(object? state)
     {
+        await TelegramHelper.SendMessage($"[{DateTime.Now}] phần mềm chạy");
         if (DateTime.Now.DayOfWeek != DayOfWeek.Saturday)
         {
             if (_userCheckIns != null && _userCheckIns.Any())

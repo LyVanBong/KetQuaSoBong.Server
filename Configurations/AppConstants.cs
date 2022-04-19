@@ -1,4 +1,4 @@
-﻿namespace Api.Configurations;
+﻿namespace Configurations;
 
 public static class AppConstants
 {

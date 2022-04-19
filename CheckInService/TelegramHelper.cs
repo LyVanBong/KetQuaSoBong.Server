@@ -1,6 +1,6 @@
 ﻿using RestSharp;
 
-namespace Api.CheckIn;
+namespace CheckInService;
 
 public static class TelegramHelper
 {
