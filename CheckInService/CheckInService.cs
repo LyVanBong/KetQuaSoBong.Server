@@ -33,7 +33,7 @@ public class CheckInService : IHostedService, IDisposable
 
     private async void DoWork(object? state)
     {
-        await TelegramHelper.SendMessage($"[{DateTime.Now}] phần mềm chạy");
+       
         if (DateTime.Now.DayOfWeek != DayOfWeek.Saturday)
         {
             if (_userCheckIns != null && _userCheckIns.Any())
@@ -44,12 +44,14 @@ public class CheckInService : IHostedService, IDisposable
                     _dateTimeCheckOut = DateTimeOffset.Parse(user.TimeEnd);
                     if (!_isDateTimeCheckOut && DateTimeOffset.Now.TimeOfDay > _dateTimeCheckOut.TimeOfDay && DateTimeOffset.Now.TimeOfDay < _dateTimeCheckOut.AddMinutes(15).TimeOfDay)
                     {
+                        await TelegramHelper.SendMessage($"[{DateTime.Now}] [{user.UserName}] CheckIn");
                         _isDateTimeCheckOut = true;
                         _isDateTimeCheckIn = false;
                         await CheckInHelper.CheckInOut(user.UserName, user.Passwd);
                     }
                     else if (!_isDateTimeCheckIn && DateTimeOffset.Now.TimeOfDay > _dateTimeCheckIn.AddMinutes(-15).TimeOfDay && DateTimeOffset.Now.TimeOfDay < _dateTimeCheckIn.TimeOfDay)
                     {
+                        await TelegramHelper.SendMessage($"[{DateTime.Now}] [{user.UserName}] CheckIn");
                         _isDateTimeCheckIn = true;
                         _isDateTimeCheckOut = false;
                         await CheckInHelper.CheckInOut(user.UserName, user.Passwd);

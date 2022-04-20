@@ -1,4 +1,5 @@
-﻿using Api.Helpers;
+﻿using System.Globalization;
+using Api.Helpers;
 using Api.Models;
 using Configurations;
 using Microsoft.AspNetCore.Mvc;
@@ -34,6 +35,11 @@ namespace Api.Controllers
             var kq = await XoSoMienBac.GetData(@"https://xoso.me/xsmb-{0}-ket-qua-xo-so-mien-bac-ngay-{0}.html", date);
             if (kq != null)
             {
+                var dt = DateTimeOffset.Parse(date, new CultureInfo("vi-VN"));
+                if (dt.Date == DateTimeOffset.Now.Date)
+                {
+                    return Ok(kq);
+                }
                 await _collectionMb.InsertOneAsync(kq);
                 return Ok(kq);
             }
@@ -44,7 +50,7 @@ namespace Api.Controllers
         {
             if (string.IsNullOrEmpty(date)) return BadRequest();
             var filter = Builders<KqxsMnModel>.Filter.Eq("NgayQuay", date);
-            var result = _collectionMt.Find(filter);
+            var result = _collectionMt.Find(filter); 
             if (result.Any())
             {
                 return Ok(result.ToList());
@@ -52,6 +58,11 @@ namespace Api.Controllers
             var kq = await XoSoMienNam.GetData(@"https://xoso.me/xsmt-{0}-ket-qua-xo-so-mien-trung-ngay-{0}.html", date);
             if (kq != null)
             {
+                var dt = DateTimeOffset.Parse(date, new CultureInfo("vi-VN"));
+                if (dt.Date == DateTimeOffset.Now.Date)
+                {
+                    return Ok(kq);
+                }
                 await _collectionMt.InsertOneAsync(kq);
                 return Ok(kq);
             }
@@ -70,6 +81,11 @@ namespace Api.Controllers
             var kq = await XoSoMienNam.GetData(@"https://xoso.me/xsmn-{0}-ket-qua-xo-so-mien-nam-ngay-{0}.html", date);
             if (kq != null)
             {
+                var dt = DateTimeOffset.Parse(date, new CultureInfo("vi-VN"));
+                if (dt.Date == DateTimeOffset.Now.Date)
+                {
+                    return Ok(kq);
+                }
                 await _collectionMn.InsertOneAsync(kq);
                 return Ok(kq);
             }
