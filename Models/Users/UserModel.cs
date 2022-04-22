@@ -1,6 +1,6 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 
-namespace Api.Models;
+namespace Models.Users;
 
 public class UserModel
 {
@@ -10,4 +10,5 @@ public class UserModel
     public int Sex { get; set; }
     public string NumberPhone { get; set; }
     public string Email { get; set; }
+    public string Name { get; set; }
 }

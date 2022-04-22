@@ -1,8 +1,8 @@
 ﻿using System.Globalization;
 using Api.Helpers;
-using Api.Models;
 using Configurations;
 using Microsoft.AspNetCore.Mvc;
+using Models.Kqxs;
 using MongoDB.Driver;
 
 namespace Api.Controllers
@@ -25,7 +25,7 @@ namespace Api.Controllers
         [HttpGet("northern/{date}")]
         public async Task<IActionResult> GetNorthern(string date)
         {
-            if (string.IsNullOrEmpty(date)) return BadRequest();
+            if (string.IsNullOrEmpty(date)) return BadRequest(0);
             var filter = Builders<KqxsMbModel>.Filter.Eq("NgayQuay", date);
             var result = _collectionMb.Find(filter);
             if (result.Any())
@@ -43,12 +43,12 @@ namespace Api.Controllers
                 await _collectionMb.InsertOneAsync(kq);
                 return Ok(kq);
             }
-            return BadRequest();
+            return BadRequest(0);
         }
         [HttpGet("central/{date}")]
         public async Task<IActionResult> GetCentral(string date)
         {
-            if (string.IsNullOrEmpty(date)) return BadRequest();
+            if (string.IsNullOrEmpty(date)) return BadRequest(0);
             var filter = Builders<KqxsMnModel>.Filter.Eq("NgayQuay", date);
             var result = _collectionMt.Find(filter); 
             if (result.Any())
@@ -66,12 +66,12 @@ namespace Api.Controllers
                 await _collectionMt.InsertOneAsync(kq);
                 return Ok(kq);
             }
-            return BadRequest();
+            return BadRequest(0);
         }
         [HttpGet("south/{date}")]
         public async Task<IActionResult> GetSouth(string date)
         {
-            if (string.IsNullOrEmpty(date)) return BadRequest();
+            if (string.IsNullOrEmpty(date)) return BadRequest(0);
             var filter = Builders<KqxsMnModel>.Filter.Eq("NgayQuay", date);
             var result = _collectionMn.Find(filter);
             if (result.Any())
@@ -89,7 +89,7 @@ namespace Api.Controllers
                 await _collectionMn.InsertOneAsync(kq);
                 return Ok(kq);
             }
-            return BadRequest();
+            return BadRequest(0);
         }
     }
 }

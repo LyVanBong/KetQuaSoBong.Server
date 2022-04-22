@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Text.RegularExpressions;
-using Api.Models;
+using Models.Kqxs;
 using RestSharp;
 
 namespace Api.Helpers;

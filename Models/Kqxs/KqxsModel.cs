@@ -1,4 +1,4 @@
-﻿namespace Api.Models
+﻿namespace Models.Kqxs
 {
     public class KqxsModel
     {

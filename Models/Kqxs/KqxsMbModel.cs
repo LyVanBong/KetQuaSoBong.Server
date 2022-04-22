@@ -1,6 +1,6 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 
-namespace Api.Models;
+namespace Models.Kqxs;
 
 public class KqxsMbModel : KqxsModel
 {

@@ -1,7 +1,6 @@
-﻿using Api.Models;
-using BCrypt.Net;
-using Configurations;
+﻿using Configurations;
 using Microsoft.AspNetCore.Mvc;
+using Models.Users;
 using MongoDB.Driver;
 
 namespace Api.Controllers

@@ -18,8 +18,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CheckInService\CheckInService.csproj" />
     <ProjectReference Include="..\Configurations\Configurations.csproj" />
+    <ProjectReference Include="..\Models\Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="BackgroundServices\" />
   </ItemGroup>
 
 </Project>
