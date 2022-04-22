@@ -10,12 +10,41 @@ namespace Api.Controllers
     public class SupportController : ControllerBase
     {
         private readonly IMongoCollection<Support> _collectionSupport;
+        private readonly IMongoCollection<Contact> _collectionContact;
 
         public SupportController()
         {
             MongoClient mongo = new MongoClient(AppConstants.ConnectionStringMongoDb);
             IMongoDatabase database = mongo.GetDatabase("Kqxs");
             _collectionSupport = database.GetCollection<Support>(nameof(Support));
+            _collectionContact = database.GetCollection<Contact>(nameof(Contact));
+        }
+        [HttpGet("contact")]
+        public async Task<IActionResult> GetContact()
+        {
+            var data = _collectionContact.Find(Builders<Contact>.Filter.Empty);
+            if (data.Any())
+            {
+                var result = data.ToList();
+                return Ok(result);
+            }
+
+            return BadRequest(0);
+        }
+        [HttpPost("contact/{name}/{info}")]
+        public async Task<IActionResult> PostContact(string name, [FromQuery] string icon, string info)
+        {
+            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(icon) || string.IsNullOrEmpty(info))
+            {
+                return BadRequest(0);
+            }
+            await _collectionContact.InsertOneAsync(new Contact()
+            {
+                Name = name,
+                Icon = icon,
+                ContactInfo = info
+            });
+            return Ok(1);
         }
 
         [HttpPost("Post/{userName}/{numberPhone}/{email}")]
