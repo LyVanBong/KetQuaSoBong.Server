@@ -1,23 +1,21 @@
 ﻿using Configurations;
+using Models.BinhChon;
 using Models.Chats;
 using MongoDB.Driver;
 
 namespace Api.BackgroundServices;
 
-public class ClearMessageService : IHostedService, IDisposable
+public class ClearDataService : IHostedService, IDisposable
 {
     private Timer _timer = null!;
-    private readonly IMongoCollection<ChatBongDa> _collectionBd;
-    private readonly IMongoCollection<ChatXoSo> _collectionXs;
     private readonly IMongoDatabase _database;
-    private DateTimeOffset _timeCheck = new DateTimeOffset();
+    private DateTimeOffset _timeChat = new DateTimeOffset();
+    private DateTimeOffset _timeBinhChon = new DateTimeOffset();
 
-    public ClearMessageService()
+    public ClearDataService()
     {
         MongoClient mongo = new MongoClient(AppConstants.ConnectionStringMongoDb);
         _database = mongo.GetDatabase("Kqxs");
-        _collectionXs = _database.GetCollection<ChatXoSo>(nameof(ChatXoSo));
-        _collectionBd = _database.GetCollection<ChatBongDa>(nameof(ChatBongDa));
     }
     public Task StartAsync(CancellationToken cancellationToken)
     {
@@ -27,11 +25,18 @@ public class ClearMessageService : IHostedService, IDisposable
 
     private Task DoWork(object? state)
     {
-        if (DateTimeOffset.Now.Hour == 0 && DateTimeOffset.Now.Date != _timeCheck.Date)
+        if (DateTimeOffset.Now.Hour == 0 && DateTimeOffset.Now.Date != _timeChat.Date)
         {
-            _timeCheck = DateTimeOffset.Now;
+            _timeChat = DateTimeOffset.Now;
             _database.DropCollection(nameof(ChatXoSo));
             _database.DropCollection(nameof(ChatBongDa));
+        }
+
+        if (DateTimeOffset.Now.Hour == 19 && DateTimeOffset.Now.Date != _timeBinhChon.Date)
+        {
+            _timeBinhChon = DateTimeOffset.Now;
+            _database.DropCollection(nameof(BinhChon));
+            _database.DropCollection(nameof(LichSuBinhChon));
         }
 
         return Task.CompletedTask;

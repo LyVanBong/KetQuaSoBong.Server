@@ -10,8 +10,7 @@ service.AddControllers();
 service.AddEndpointsApiExplorer();
 service.AddSwaggerGen();
 
-service.AddHostedService<ClearMessageService>();
-service.AddHostedService<MongoDbService>();
+service.AddHostedService<ClearDataService>();
 
 var app = builder.Build();
 
