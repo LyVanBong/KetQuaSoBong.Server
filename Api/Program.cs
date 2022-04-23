@@ -11,6 +11,7 @@ service.AddEndpointsApiExplorer();
 service.AddSwaggerGen();
 
 service.AddHostedService<ClearMessageService>();
+service.AddHostedService<MongoDbService>();
 
 var app = builder.Build();
 
