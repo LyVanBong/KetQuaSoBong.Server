@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CheckInService", "CheckInSe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Configurations", "Configurations\Configurations.csproj", "{B5C0ACFE-0DC7-4CFF-A69C-D71F2799BC79}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{13A3F0D4-6C3D-425A-9236-50B73D72CABB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{13A3F0D4-6C3D-425A-9236-50B73D72CABB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckInApp", "CheckInApp\CheckInApp.csproj", "{C1A88933-0276-4C1C-B0E3-7D1AAD7D392B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{13A3F0D4-6C3D-425A-9236-50B73D72CABB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13A3F0D4-6C3D-425A-9236-50B73D72CABB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13A3F0D4-6C3D-425A-9236-50B73D72CABB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1A88933-0276-4C1C-B0E3-7D1AAD7D392B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1A88933-0276-4C1C-B0E3-7D1AAD7D392B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1A88933-0276-4C1C-B0E3-7D1AAD7D392B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1A88933-0276-4C1C-B0E3-7D1AAD7D392B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
