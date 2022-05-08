@@ -5,7 +5,7 @@ using MongoDB.Driver;
 
 namespace CheckInService;
 
-public class CheckInService : IHostedService, IDisposable
+public class CheckInService : BackgroundService
 {
     private Timer _timer = null!;
     private bool _isDateTimeCheckIn = false;
@@ -22,7 +22,8 @@ public class CheckInService : IHostedService, IDisposable
         IMongoDatabase database = mongo.GetDatabase("Kqxs");
         _collectionCheckIn = database.GetCollection<CheckInModel>("CheckIn");
     }
-    public async Task StartAsync(CancellationToken stoppingToken)
+
+    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         _logger.LogInformation("Bắt đầu chạy service");
         await TelegramHelper.SentMessage($"[{DateTime.Now}] Bắt đầu khởi động phầm mền check in out");
@@ -34,7 +35,6 @@ public class CheckInService : IHostedService, IDisposable
         _timer = new Timer(DoWork, null, TimeSpan.Zero,
             TimeSpan.FromMinutes(1));
     }
-
     private async void DoWork(object? state)
     {
         _logger.LogInformation("DoWork");
@@ -63,17 +63,5 @@ public class CheckInService : IHostedService, IDisposable
                 }
             }
         }
-    }
-
-    public Task StopAsync(CancellationToken stoppingToken)
-    {
-        _timer?.Change(Timeout.Infinite, 0);
-
-        return Task.CompletedTask;
-    }
-
-    public void Dispose()
-    {
-        _timer?.Dispose();
     }
 }
