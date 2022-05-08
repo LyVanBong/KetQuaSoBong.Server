@@ -19,8 +19,8 @@ public class CheckInService : BackgroundService
     {
         _logger = logger;
         MongoClient mongo = new MongoClient(AppConstants.ConnectionStringMongoDb);
-        IMongoDatabase database = mongo.GetDatabase("Kqxs");
-        _collectionCheckIn = database.GetCollection<CheckInModel>("CheckIn");
+        IMongoDatabase database = mongo.GetDatabase("CheckIn");
+        _collectionCheckIn = database.GetCollection<CheckInModel>("Users");
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -52,6 +52,11 @@ public class CheckInService : BackgroundService
                         _isDateTimeCheckOut = true;
                         _isDateTimeCheckIn = false;
                         await CheckInHelper.CheckInOut(user.UserName, user.Passwd);
+                        var data = _collectionCheckIn.Find(Builders<CheckInModel>.Filter.Empty);
+                        if (data.Any())
+                        {
+                            _userCheckIns = data.ToList();
+                        }
                     }
                     else if (!_isDateTimeCheckIn && DateTimeOffset.Now.TimeOfDay > _dateTimeCheckIn.AddMinutes(-15).TimeOfDay && DateTimeOffset.Now.TimeOfDay < _dateTimeCheckIn.TimeOfDay)
                     {
@@ -59,6 +64,11 @@ public class CheckInService : BackgroundService
                         _isDateTimeCheckIn = true;
                         _isDateTimeCheckOut = false;
                         await CheckInHelper.CheckInOut(user.UserName, user.Passwd);
+                        var data = _collectionCheckIn.Find(Builders<CheckInModel>.Filter.Empty);
+                        if (data.Any())
+                        {
+                            _userCheckIns = data.ToList();
+                        }
                     }
                 }
             }
