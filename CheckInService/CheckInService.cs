@@ -37,7 +37,7 @@ public class CheckInService : BackgroundService
     }
     private async void DoWork(object? state)
     {
-        _logger.LogInformation("DoWork");
+        _logger.LogInformation($"[{DateTime.Now}] DoWork");
         if (DateTime.Now.DayOfWeek != DayOfWeek.Saturday)
         {
             if (_userCheckIns != null && _userCheckIns.Any())

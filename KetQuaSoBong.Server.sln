@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Configurations", "Configura
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{13A3F0D4-6C3D-425A-9236-50B73D72CABB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckInApp", "CheckInApp\CheckInApp.csproj", "{C1A88933-0276-4C1C-B0E3-7D1AAD7D392B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CheckInApp", "CheckInApp\CheckInApp.csproj", "{C1A88933-0276-4C1C-B0E3-7D1AAD7D392B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckInOut", "CheckInOut\CheckInOut.csproj", "{5FA1C6AD-F749-4823-B96E-A0F288E15B15}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{C1A88933-0276-4C1C-B0E3-7D1AAD7D392B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1A88933-0276-4C1C-B0E3-7D1AAD7D392B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C1A88933-0276-4C1C-B0E3-7D1AAD7D392B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FA1C6AD-F749-4823-B96E-A0F288E15B15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FA1C6AD-F749-4823-B96E-A0F288E15B15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FA1C6AD-F749-4823-B96E-A0F288E15B15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FA1C6AD-F749-4823-B96E-A0F288E15B15}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
