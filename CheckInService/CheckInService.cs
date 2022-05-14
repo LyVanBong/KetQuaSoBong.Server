@@ -33,7 +33,7 @@ public class CheckInService : BackgroundService
             _userCheckIns = data.ToList();
         }
         _timer = new Timer(DoWork, null, TimeSpan.Zero,
-            TimeSpan.FromMinutes(3));
+            TimeSpan.FromMinutes(2));
     }
     private async void DoWork(object? state)
     {
