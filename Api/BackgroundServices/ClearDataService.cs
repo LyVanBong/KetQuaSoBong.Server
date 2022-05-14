@@ -5,7 +5,7 @@ using MongoDB.Driver;
 
 namespace Api.BackgroundServices;
 
-public class ClearDataService : IHostedService, IDisposable
+public class ClearDataService : BackgroundService
 {
     private Timer _timer = null!;
     private readonly IMongoDatabase _database;
@@ -17,12 +17,12 @@ public class ClearDataService : IHostedService, IDisposable
         MongoClient mongo = new MongoClient(AppConstants.ConnectionStringMongoDb);
         _database = mongo.GetDatabase("Kqxs");
     }
-    public Task StartAsync(CancellationToken cancellationToken)
+
+    protected override Task ExecuteAsync(CancellationToken stoppingToken)
     {
         _timer = new Timer(state => DoWork(state), null, TimeSpan.Zero, TimeSpan.FromMinutes(1));
         return Task.CompletedTask;
     }
-
     private Task DoWork(object? state)
     {
         if (DateTimeOffset.Now.Hour == 0 && DateTimeOffset.Now.Date != _timeChat.Date)
@@ -40,16 +40,5 @@ public class ClearDataService : IHostedService, IDisposable
         }
 
         return Task.CompletedTask;
-    }
-    public Task StopAsync(CancellationToken cancellationToken)
-    {
-        _timer?.Change(Timeout.Infinite, 0);
-
-        return Task.CompletedTask;
-    }
-
-    public void Dispose()
-    {
-        _timer?.Dispose();
     }
 }
