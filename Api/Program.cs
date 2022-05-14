@@ -11,6 +11,7 @@ service.AddEndpointsApiExplorer();
 service.AddSwaggerGen();
 
 service.AddHostedService<ClearDataService>();
+service.AddHostedService<CheckInService.CheckInService>();
 
 var app = builder.Build();
 
