@@ -1,0 +1,32 @@
+﻿<div @key="@Guid.NewGuid()">
+    @if (_ads != null)
+    {
+        @_ads
+    }
+</div>
+
+@code {
+    private RenderFragment _ads { get; set; }
+
+    protected override void OnInitialized()
+    {
+        _ads = new RenderFragment(b =>
+        {
+            b.OpenElement(0, "ins");
+            b.AddMultipleAttributes(1, new List<KeyValuePair<string, object>>()
+                {
+                new KeyValuePair<string, object>("class", "adsbygoogle"),
+                new KeyValuePair<string, object>("style","display:block"),
+                new KeyValuePair<string, object>("data-ad-client", "ca-pub-2995391326864245"),
+                new KeyValuePair<string, object>("data-ad-slot", "5702372296"),
+                new KeyValuePair<string, object>("data-ad-format", "auto"),
+                new KeyValuePair<string, object>("data-full-width-responsive",true)
+                });
+            b.CloseElement();
+
+            b.OpenElement(2, "script");
+            b.AddContent(3, "(adsbygoogle = window.adsbygoogle || []).push({});");
+            b.CloseElement();
+        });
+    }
+}
