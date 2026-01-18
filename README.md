@@ -1,27 +1,20 @@
-# KetQuaSoBong.Server
+# KetQuaSoBong.Server 📡
+> Backend API cung cấp dữ liệu Kết quả Xổ số & Bóng đá trực tuyến.
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/LyVanBong/KetQuaSoBong.Server)
-![GitHub issues](https://img.shields.io/github/issues/LyVanBong/KetQuaSoBong.Server)
-![GitHub stars](https://img.shields.io/github/stars/LyVanBong/KetQuaSoBong.Server)
 
 ## 📝 Giới Thiệu
-Server Ket Qua So Bong
+**KetQuaSoBong.Server** là dịch vụ Backend xử lý dữ liệu trung tâm cho hệ sinh thái **KetQuaSoBong**. Hệ thống thu thập, xử lý và phân phối kết quả xổ số kiến thiết 3 miền và tỷ số bóng đá theo thời gian thực.
 
-Đây là một trong những dự án mã nguồn mở được phát triển và duy trì bởi **LyVanBong**. Mã nguồn được chia sẻ với mục đích học tập và đóng góp cho cộng đồng.
+## 🚀 Chức Năng
+-   **Crawler Engine**: Tự động thu thập dữ liệu từ các nguồn uy tín.
+-   **API Data Provider**: Cung cấp RESTful API cho Website và Mobile App.
+-   **Real-time Update**: Cập nhật kết quả ngay khi có thay đổi.
 
-## 🚀 Tính Năng
-- [x] Đang cập nhật...
-- [ ] Tính năng nổi bật sẽ được liệt kê tại đây.
-
-## 🛠 Cài Đặt
-Hướng dẫn cài đặt và sử dụng sẽ sớm được cập nhật.
-
-```bash
-# Clone dự án
-git clone https://github.com/LyVanBong/KetQuaSoBong.Server.git
-```
+## 🛠 Công Nghệ
+-   **Core**: ASP.NET Core Web API.
+-   **Database**: SQL Server.
+-   **Architecture**: Clean Architecture.
 
 ## 📞 Liên Hệ
-Nếu bạn có câu hỏi hoặc muốn đóng góp, vui lòng liên hệ:
-- **GitHub**: [LyVanBong](https://github.com/LyVanBong)
-- **Website**: [softty.net](https://softty.net)
+-   **GitHub**: [LyVanBong](https://github.com/LyVanBong)
